@@ -60,13 +60,15 @@ dependencies {
     mybatisGenerator 'tk.mybatis:mapper:4.1.5'
     mybatisGenerator 'mysql:mysql-connector-java:8.0.18'
 
-    compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.13'
-    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
-    compile(group: 'tk.mybatis', name: 'mapper-spring-boot-starter', version: '1.2.4') {
+    implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.13'
+    implementation('tk.mybatis:mapper-spring-boot-starter:2.1.5') {
         exclude group: "org.mybatis", module: "mybatis"
         exclude group: "org.mybatis", module: "mybatis-spring"
     }
-
+//    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+//    implementation ('tk.mybatis:mapper:4.1.5'){
+//        exclude group: 'javax.persistence',module: 'persistence-api'
+//    }
 
 //    implementation "org.slf4j:slf4j-api:$slf4j_version"
     implementation "org.slf4j:jul-to-slf4j:$slf4j_version"

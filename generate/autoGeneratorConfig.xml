@@ -17,7 +17,7 @@
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <!--<property name="mappers" value="${mapper.Mapper}"/>-->
-            <property name="mappers" value="com.tbp.spring.boot.mybatis.template.mapper.BaseMapper"/>
+            <property name="mappers" value="com.tbp.spring.boot.mybatis.template.common.MyMapper"/>
             <!--
                 增加 model 代码生成时
                 可以直接生成 lombok 的 @Getter@Setter@ToString@Accessors(chain = true) 四类注解，
@@ -158,7 +158,8 @@
             <!--重命名-->
             <!--<columnRenamingRule searchString="^CUST_" replaceString="" />-->
             <!--主键生产-->
-            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!--<property name="useActualColumnNames" value="false"/>-->
         </table>
 
 

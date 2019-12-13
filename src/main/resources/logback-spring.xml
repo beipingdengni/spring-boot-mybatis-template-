@@ -171,7 +171,8 @@
 
     <!--开发环境:打印控制台-->
     <!--<springProfile name="mybatis">-->
-    <logger name="com.tbp" level="debug" addtivity="false"/>
+    <logger name="com.tbp" level="info" addtivity="false"/>
+    <logger name="com.tbp.spring.boot.mybatis.template.mapper" level="debug" addtivity="false"/>
     <!--</springProfile>-->
 
     <root level="info">

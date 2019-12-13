@@ -9,6 +9,7 @@ import lombok.Data;
 public class UserEntity implements Serializable {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "address")

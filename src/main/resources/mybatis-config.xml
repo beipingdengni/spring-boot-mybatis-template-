@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--设置属性-->
+    <!--<properties resource="org/mybatis/example/config.properties">-->
+        <!--<property name="username" value="dev_user"/>-->
+        <!--<property name="password" value="F2Fa3!33TYyg"/>-->
+    <!--</properties>-->
+
+    <settings>
+        <!--开启环境：默认true-->
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="logImpl" value="slf4j"/>
+        <!--是否开启自动驼峰命名规则（camel case）映射-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--默认查询数据条数-->
+        <!--<setting name="defaultFetchSize" value="1000"/>-->
+        <!--
+        当没有为参数提供特定的 JDBC 类型时，为空值指定 JDBC 类型。
+        某些驱动需要指定列的 JDBC 类型，多数情况直接用一般类型即可，
+        比如 NULL、VARCHAR 或 OTHER。 默认：OTHER-->
+        <!--<setting name="jdbcTypeForNull" value="NULL"/>-->
+    </settings>
+
+    <typeAliases>
+        <!--<typeAlias alias="Author" type="domain.blog.Author"/>-->
+        <!--<package name="domain.blog"/>-->
+    </typeAliases>
+
+    <!---->
+    <typeHandlers>
+        <!--自定义类型-->
+        <!--<typeHandler handler="org.mybatis.example.ExampleTypeHandler"/>-->
+        <!--处理枚举类型-->
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="java.math.RoundingMode"/>-->
+    </typeHandlers>
+
+    <!---->
+    <!--<plugins>-->
+        <!--<plugin interceptor="org.mybatis.example.ExamplePlugin">-->
+            <!--<property name="someProperty" value="100"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
+
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--<transactionManager type="JDBC"/>-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${driver}"/>-->
+                <!--<property name="url" value="${url}"/>-->
+                <!--<property name="username" value="${username}"/>-->
+                <!--<property name="password" value="${password}"/>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+
+    <!--<mappers>-->
+        <!--<mapper resource="org/mybatis/example/BlogMapper.xml"/>-->
+    <!--</mappers>-->
+
+
+</configuration>
