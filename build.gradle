@@ -1,0 +1,102 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    //gradle提供的mybatis generator插件
+    id "com.arenagod.gradle.MybatisGenerator" version "1.4"
+}
+
+
+//apply plugin: "com.arenagod.gradle.MybatisGenerator"
+
+// 刷新： gradle -x test build --refresh-dependencies
+
+group = 'com.tbp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+
+    all {
+        resolutionStrategy.failOnVersionConflict()
+        resolutionStrategy.cacheDynamicVersionsFor 10, 'minutes'
+    }
+    mybatisGenerator
+}
+
+mybatisGenerator {
+    overwrite = true
+    verbose = true
+    configFile = 'generate/autoGeneratorConfig.xml'
+}
+
+
+ext {
+    slf4j_version = '1.7.25'
+    swagger2_version = '2.5.0'
+//    swagger2_version = '2.9.2'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    mavenCentral()
+}
+
+//apply from: "${rootProject.projectDir}/autoMybatisGenerate.gradle"
+
+dependencies {
+
+    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.7'
+    mybatisGenerator 'tk.mybatis:mapper:4.1.5'
+    mybatisGenerator 'mysql:mysql-connector-java:8.0.18'
+
+    compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.13'
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+    compile(group: 'tk.mybatis', name: 'mapper-spring-boot-starter', version: '1.2.4') {
+        exclude group: "org.mybatis", module: "mybatis"
+        exclude group: "org.mybatis", module: "mybatis-spring"
+    }
+
+
+//    implementation "org.slf4j:slf4j-api:$slf4j_version"
+    implementation "org.slf4j:jul-to-slf4j:$slf4j_version"
+    implementation "org.slf4j:jcl-over-slf4j:$slf4j_version"
+    implementation "io.springfox:springfox-swagger2:$swagger2_version"
+    implementation "io.springfox:springfox-swagger-ui:$swagger2_version"
+
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}

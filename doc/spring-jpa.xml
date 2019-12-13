@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jpa="http://www.springframework.org/schema/p">
+
+    <!--spring 扫描-->
+    <context:component-scan base-package="com.tbp.spring.boot.jpa"/>
+
+    <!--事物拦截器-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--事物管理器-->
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- entity管理器 -->
+    <bean id="entityManagerFactory"
+          class= "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"/>
+
+
+    <!--jpa 处理如下-->
+
+    <!--需要在 标签中增加对 jpa 命名空间的引用-->
+    <jpa:repositories base-package="footmark.springdata.jpa.dao"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>
+
+</>

@@ -1,0 +1,12 @@
+server:
+  port: 8001
+
+#management:
+#  security:
+#    enabled: false
+
+spring:
+  application:
+    name: spring-boot-mybatis-template
+  profiles:
+    active: mybatis

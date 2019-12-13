@@ -1,0 +1,46 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: spring-boot-mybatis-template
+
+  datasource:
+    #    data: classpath:db/data.sql
+    #    schema: classpath:db/schema.sql
+    hikari:  # 默认使用的链接池
+      minimum-idle: 10
+      maximum-pool-size: 20
+      connection-timeout: 10000
+      idle-timeout: 600000
+      max-lifetime: 1800000 # 存活最长时间
+      connection-test-query: select 1
+      auto-commit: true
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/tian?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+#    initialSize: 10 #初始化连接池大小
+#    minIdle: 10 #初始化最小连接池数量
+#    maxActive: 100 #初始化最大连接池数量
+#    maxWait: 6000 #配置获取连接等待超时的时间
+#    timeBetweenEvictionRunsMills: 6000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#    minEvictableIdleTimeMillis: 30000 #配置一个连接在池中最小生存的时间，单位是毫秒
+#    validationQuery: SELECT 'x' #测试连接
+
+mybatis:
+  config-location: classpath:mybatis/**/*.xml
+  type-aliases-package: com.tbp.spring.boot.jps.template.entity
+  configuration:
+    # 配置驼峰命名转换 在进行sql查询和初始化实体时mybatis会为我们自动转化
+    map-underscore-to-camel-case: true
+mapper:
+  mappers:
+    - com.tbp.spring.boot.mybatis.template.mapper.BaseMapper
+  identity: MYSQL
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
